@@ -15,7 +15,7 @@ module JsRestHelper
   end
 
   def js_rest_javascript_includes
-    javascript_include_tag('js_rest_base/inheritance', 'js_rest_base/data', 'js_rest_base/view', 'js_rest_base/model')
+    javascript_include_tag('js_rest/inheritance', 'js_rest/data', 'js_rest/view', 'js_rest/model')
   end
 
   private
