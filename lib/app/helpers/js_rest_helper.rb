@@ -8,7 +8,7 @@ module JsRestHelper
     end
 
     javascript do
-      "Data.post = {
+      "Data.#{data_name.singularize} = {
         #{render :partial => 'shared/js_rest_item', :collection => data_array}
       };"
     end
