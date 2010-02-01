@@ -1,5 +1,5 @@
 module JsRestHelper
-  def render_js_rest_data(data_name, data_array)
+  def render_js_rest_data(data_name, data_array, options = {})
     @js_rest_model_includes ||= {}
 
     unless @js_rest_model_includes[data_name.to_sym]
@@ -7,9 +7,13 @@ module JsRestHelper
       @js_rest_model_includes[data_name.to_sym] = true
     end
 
+    json_options = {}
+    json_options[:only] = options[:only] unless options[:only].blank?
+    json_options[:except] = options[:except] unless options[:except].blank?
+    
     javascript do
       "Data.#{data_name.singularize} = {
-        #{render :partial => 'shared/js_rest_item', :collection => data_array}
+        #{render :partial => 'shared/js_rest_item', :collection => data_array, :locals => { :json_options => json_options }}
       };"
     end
   end
